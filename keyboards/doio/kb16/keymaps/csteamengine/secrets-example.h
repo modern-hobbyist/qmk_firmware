@@ -1,3 +1,4 @@
+// Rename this file to secrets.h and change the passwords to your actual passwords.
 // secrets.h
 #ifndef SECRETS_H
 #define SECRETS_H
