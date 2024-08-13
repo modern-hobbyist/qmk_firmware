@@ -43,11 +43,6 @@ bool set_scrolling = false;
 float scroll_accumulated_h = 0;
 float scroll_accumulated_v = 0;
 
-static uint32_t key_timer;           // timer for last keyboard activity, use 32bit value and function to make longer idle time possible
-static void refresh_rgb(void);       // refreshes the activity timer and RGB, invoke whenever any activity happens
-static void check_rgb_timeout(void); // checks if enough time has passed for RGB to timeout
-bool is_rgb_timeout = false;         // store if RGB has timed out or not in a boolean
-
 // enum layer_keycodes { };
 enum custom_keycodes {
     PWONE = SAFE_RANGE,
@@ -165,59 +160,11 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 };
 #endif
 
-void refresh_rgb(void) {
-    rgb_matrix_sethsv(3, 255, 255);
-    rgblight_sethsv(3, 255, 255);
-    rgblight_mode(1);
-    rgblight_wakeup();
-    eeconfig_update_rgb_matrix();
-    key_timer = timer_read32(); // store time of last refresh
-    if (is_rgb_timeout)
-    {
-        is_rgb_timeout = false;
-        rgblight_wakeup();
-    }
-}
-
-/* Runs after each key press, check if activity occurred */
-void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
-#ifdef RGBLIGHT_TIMEOUT
-    if (record->event.pressed)
-        refresh_rgb();
-#endif
-}
-/* Runs after each encoder tick, check if activity occurred */
-void post_encoder_update_user(uint8_t index, bool clockwise) {
-#ifdef RGBLIGHT_TIMEOUT
-    refresh_rgb();
-#endif
-}
-
-void check_rgb_timeout(void) {
-    if (!is_rgb_timeout && timer_elapsed32(key_timer) > RGBLIGHT_TIMEOUT) // check if RGB has already timeout and if enough time has passed
-    {
-        rgblight_suspend();
-        is_rgb_timeout = true;
-    }
-}
-
-/* Then, call the above functions from QMK's built in post processing functions like so */
-/* Runs at the end of each scan loop, check if RGB timeout has occured or not */
-void housekeeping_task_user(void) {
-#ifdef RGBLIGHT_TIMEOUT
-    check_rgb_timeout();
-#endif
-}
-
-#ifdef RGBLIGHT_ENABLE
 void keyboard_post_init_user(void) {
-    rgblight_enable(); // Enables RGB, without saving settings
-    rgb_matrix_sethsv(3, 255, 255);
-    rgblight_sethsv(3, 255, 255);
-    rgblight_mode(1);
-    eeconfig_update_rgb_matrix();
+    // Set the RGB matrix to solid orange
+    rgblight_mode(0);  // Static light mode
+    rgblight_sethsv(8, 255, 255);  // Set to orange color
 }
-#endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
