@@ -102,11 +102,76 @@ enum {
     TD_PW_FOUR,
 };
 
+static uint32_t key_timer;           // timer for last keyboard activity, use 32bit value and function to make longer idle time possible
+static void refresh_rgb(void);       // refreshes the activity timer and RGB, invoke whenever any activity happens
+static void check_rgb_timeout(void); // checks if enough time has passed for RGB to timeout
+bool is_rgb_timeout = false;         // store if RGB has timed out or not in a boolean
+
+void refresh_rgb(void) {
+    key_timer = timer_read32(); // store time of last refresh
+    if (is_rgb_timeout)
+    {
+        is_rgb_timeout = false;
+        rgb_matrix_enable_noeeprom();
+    }
+}
+void check_rgb_timeout(void) {
+    if (!is_rgb_timeout && timer_elapsed32(key_timer) > RGB_MATRIX_TIMEOUT) // check if RGB has already timeout and if enough time has passed
+    {
+        rgb_matrix_disable_noeeprom();
+        is_rgb_timeout = true;
+    }
+}
+/* Then, call the above functions from QMK's built in post processing functions like so */
+/* Runs at the end of each scan loop, check if RGB timeout has occured or not */
+void housekeeping_task_user(void) {
+#ifdef RGB_MATRIX_TIMEOUT
+    check_rgb_timeout();
+#endif
+}
+
+/* Runs after each encoder tick, check if activity occurred */
+void post_encoder_update_user(uint8_t index, bool clockwise) {
+#ifdef RGB_MATRIX_TIMEOUT
+    refresh_rgb();
+#endif
+}
+
+void suspend_power_down_user(void) {
+    // code will run multiple times while keyboard is suspended
+}
+
+void suspend_wakeup_init_user(void) {
+    // code will run on keyboard wakeup
+}
+
+void keyboard_post_init_user(void) {
+    rgb_matrix_enable_noeeprom();  // Enable RGB without saving settings to EEPROM
+    rgb_matrix_sethsv_noeeprom(HSV_ORANGE);
+}
+
+// Use this to clear eeprom
+void eeconfig_init_user(void) {
+    eeconfig_update_rgb_matrix_default();
+    rgb_matrix_enable_noeeprom();
+}
+
 // Function associated with all tap dances
 td_state_t cur_dance(tap_dance_state_t *state);
 
+bool rgb_matrix_indicators_user(void) {
+    rgb_matrix_set_color_all(RGB_ORANGE);
+    // Testing out CAPSLOCK indicator on my macro pad for use on my full keyboard.
+    // if(host_keyboard_led_state().caps_lock) {
+    //     rgb_matrix_set_color(0, RGB_BLUE);
+    // } else {
+    //     rgb_matrix_set_color_all(RGB_BLUE);
+    // }
+    return false;
+}
+
 // Functions associated with individual tap dances
-void ql_finished(tap_dance_state_t *state, void *user_data);
+void ql_finished(tap_dance_state_t *state, void *user_data, uint16_t key_code);
 void ql_reset(tap_dance_state_t *state, void *user_data);
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -114,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
                 TD(TD_PW_ONE),     TD(TD_PW_TWO),    TD(TD_PW_THREE),    TD(TD_PW_FOUR),     QK_BOOT,
                 REFACTOR,     RUN,    EXTRACT_METHOD,    INSPECT,     TO(_EMOJIS),
-                INTELLIJ_BACK,     INTELLIJ_FORWARD,    COPY_PATH,   COPY_FILENAME,  RGB_TOG,
+                INTELLIJ_BACK,     INTELLIJ_FORWARD,    COPY_PATH,   COPY_FILENAME,  KC_CAPS,
                 TD(TASK_EMOJI_LAYER), TICK_TICK_MINI, DISTRACTION_FREE_MODE, CMD_SHIFT_T
             ),
 
@@ -128,7 +193,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /*  Row:    0        1        2        3        4       */
     [_FN1] = LAYOUT(
-                _______, _______, _______, _______, _______,
+                _______, _______, _______, _______, EE_CLR,
                 _______, _______, _______, _______, TO(_FN2),
                 _______, _______, _______, _______, _______,
                 _______, _______, _______, _______
@@ -159,12 +224,6 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_FN2]  = { ENCODER_CCW_CW(KC_TRNS, KC_TRNS), ENCODER_CCW_CW(KC_TRNS, KC_TRNS), ENCODER_CCW_CW(KC_TRNS, KC_TRNS) },
 };
 #endif
-
-void keyboard_post_init_user(void) {
-    // Set the RGB matrix to solid orange
-    rgblight_mode(0);  // Static light mode
-    rgblight_sethsv(8, 255, 255);  // Set to orange color
-}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -316,6 +375,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 };
+
+/* Runs after each key press, check if activity occurred */
+void post_process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef RGB_MATRIX_TIMEOUT
+    if (record->event.pressed)
+        refresh_rgb();
+#endif
+}
 
 // Determine the current tap dance state
 td_state_t cur_dance(tap_dance_state_t *state) {

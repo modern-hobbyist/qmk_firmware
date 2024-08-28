@@ -20,8 +20,5 @@
 /* Use the custom font */
 #define OLED_FONT_H "./lib/glcdfont.c"
 
-#define RGBLIGHT_LED_COUNT 16
-#define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_STATIC_LIGHT
-#define RGBLIGHT_DEFAULT_HUE 3
-#define RGBLIGHT_DEFAULT_SAT 255
-#define RGBLIGHT_DEFAULT_VAL 255
+#define RGB_MATRIX_TIMEOUT 900000 // number of milliseconds to wait until rgb automatically turns off
+#define RGB_MATRIX_SLEEP
