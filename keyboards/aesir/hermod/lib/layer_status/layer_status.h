@@ -17,11 +17,4 @@
 
 #pragma once
 
-/* Use the custom font */
-#define OLED_FONT_H "./lib/glcdfont.c"
-
-#define RGB_MATRIX_TIMEOUT 900000 // number of milliseconds to wait until rgb automatically turns off
-#define RGB_MATRIX_SLEEP
-#define RGB_MATRIX_DEFAULT_HUE 8
-#define RGB_MATRIX_DEFAULT_SAT 255
-#define RGB_MATRIX_DEFAULT_VAL 200
+void render_layer_status(void);

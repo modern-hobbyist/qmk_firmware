@@ -1,5 +1,4 @@
-/* Copyright 2022 DOIO
- * Copyright 2022 HorrorTroll <https://github.com/HorrorTroll>
+/* Copyright 2024 Modern Hobbyist <https://github.com/modern-hobbyist>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,14 +13,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #pragma once
 
 /* Use the custom font */
 #define OLED_FONT_H "./lib/glcdfont.c"
 
-#define RGB_MATRIX_TIMEOUT 900000 // number of milliseconds to wait until rgb automatically turns off
-#define RGB_MATRIX_SLEEP
-#define RGB_MATRIX_DEFAULT_HUE 8
-#define RGB_MATRIX_DEFAULT_SAT 255
-#define RGB_MATRIX_DEFAULT_VAL 200
+#ifdef OLED_ENABLE
+/* Mapping I2C2 for OLED */
+#    define I2C1_SCL_PIN B6
+#    define I2C1_SDA_PIN B7
+#    define I2C_DRIVER I2CD1
+#endif
