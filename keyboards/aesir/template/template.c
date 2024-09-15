@@ -15,7 +15,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#include "quantum.h"
 
-void reset_logo(void);
-bool render_logo(void);
+// Default timeout for displaying boot logo.
+#ifndef OLED_LOGO_TIMEOUT
+#    define OLED_LOGO_TIMEOUT 5000
+#endif
+
+#ifdef OLED_ENABLE
+uint16_t startup_timer;
+
+oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
+    startup_timer = timer_read();
+
+    return rotation;
+}
+
+bool oled_task_kb(void) {
+    if (!oled_task_user()) {
+        return false;
+    }
+    return true;
+}
+#endif
