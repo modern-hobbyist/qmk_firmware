@@ -10,7 +10,8 @@
         "console": false,
         "extrakey": true,
         "mousekey": true,
-        "nkro": true
+        "nkro": true,
+        "oled": true
     },
     "matrix_pins": {
         "cols": ["A9", "A8", "B15", "B14", "B13", "B12", "B11", "B10", "B2", "B1", "B0", "A7", "A6", "A5", "A4", "A3", "A2", "A1"],
@@ -21,7 +22,7 @@
     "usb": {
         "device_version": "1.0.0",
         "pid": "0x0000",
-        "vid": "0xFEED"
+        "vid": "0x4D48"
     },
     "ws2812": {
         "pin": "A0"

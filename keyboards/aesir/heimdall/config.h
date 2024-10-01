@@ -13,6 +13,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#pragma once
+
+/* Use the custom font */
+#define OLED_FONT_H "./lib/glcdfont.c"
+
+#ifdef OLED_ENABLE
+#define I2C_DRIVER I2CD1
+#define I2C1_SCL_PIN B8
+#define I2C1_SCL_PAL_MODE 1
+#define I2C1_SDA_PIN B9
+#define I2C1_SDA_PAL_MODE 1
+#endif
 
 #define CAPSLOCK_LED 8
 #define SELECT_WORD_TIMEOUT 2000 // When idle, clear state after 2 seconds.
