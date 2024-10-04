@@ -5,15 +5,20 @@
     "bootloader": "stm32duino",
     "diode_direction": "COL2ROW",
     "features": {
+        "backlight": true,
         "bootmagic": true,
         "command": false,
         "console": false,
         "extrakey": true,
         "mousekey": true,
-        "nkro": true
+        "nkro": true,
+        "rgb_matrix": false,
+    },
+    "backlight": {
+        "pin": "B6",
     },
     "matrix_pins": {
-        "cols": ["A3", "A4", "A5"],
+        "cols": ["A2", "A3", "A4"],
         "rows": ["B0"]
     },
     "processor": "STM32F103",
