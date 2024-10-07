@@ -13,9 +13,7 @@
         "mousekey": true,
         "nkro": true,
         "rgb_matrix": false,
-    },
-    "backlight": {
-        "pin": "B6",
+        "oled": false
     },
     "matrix_pins": {
         "cols": ["A2", "A3", "A4"],
