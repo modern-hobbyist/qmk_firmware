@@ -18,3 +18,22 @@
 
 #undef STM32_I2C_USE_I2C1
 #define STM32_I2C_USE_I2C1 TRUE
+
+#undef STM32_SPI_USE_SPI2
+#define STM32_SPI_USE_SPI2 TRUE
+
+// Used for RGB
+#undef STM32_PWM_USE_TIM1
+#define STM32_PWM_USE_TIM1 TRUE
+
+// Used for split comms
+#undef STM32_SERIAL_USE_USART2
+#define STM32_SERIAL_USE_USART2 TRUE
+
+#undef SERIAL_USART_DRIVER
+#define SERIAL_USART_DRIVER SD2
+
+#undef SERIAL_USART_TX_PAL_MODE
+#define SERIAL_USART_TX_PAL_MODE 1
+
+#define SERIAL_USART_PIN_SWAP      // Swap TX and RX pins if keyboard is master halve. (Only available on some MCUs)
