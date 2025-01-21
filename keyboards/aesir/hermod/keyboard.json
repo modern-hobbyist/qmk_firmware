@@ -21,23 +21,28 @@
     "split": {
         "enabled": true,
         "serial": {
-            "pin": "A15"
+            "pin": "A15",
+            "driver": "usart"
         },
         "matrix_pins": {
             "right": {
                 "cols": ["B14", "A9", "A8", "B15", "B10", "B2", "B1", "A5", "A6", "A7", "B0"],
                 "rows": ["B12", "B13", "B11", "A4", "B8", "A3", "A2"]
             }
+        },
+        "usb_detect": {
+           "enabled": true
+        },
+        "transport": {
+            "protocol": "serial"
         }
     },
-    "rgblight": {
-        "led_count": 82,
-        "split_count": [59, 63]
-    },
     "ws2812": {
-        "pin": "A0"
+        "pin": "A10",
     },
     "rgb_matrix": {
+        "led_count": 82,
+        "split_count": [59, 63],
         "driver": "ws2812",
         "max_brightness": 100,
         "layout": [
@@ -104,7 +109,7 @@
     },
     "url": "",
     "usb": {
-        "device_version": "1.0.0",
+        "device_version": "2.0.0",
         "pid": "0x0004",
         "vid": "0x4D48"
     },
