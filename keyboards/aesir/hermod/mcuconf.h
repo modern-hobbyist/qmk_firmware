@@ -35,5 +35,3 @@
 
 #undef SERIAL_USART_TX_PAL_MODE
 #define SERIAL_USART_TX_PAL_MODE 1
-
-#define SERIAL_USART_PIN_SWAP      // Swap TX and RX pins if keyboard is master halve. (Only available on some MCUs)

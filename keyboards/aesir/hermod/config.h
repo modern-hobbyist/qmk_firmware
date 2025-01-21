@@ -53,4 +53,9 @@
 #define BACKLIGHT_LEVELS 10
 // #define BACKLIGHT_PAL_MODE 2
 #define BACKLIGHT_PIN B8
-#define MASTER_LEFT
+
+#define SERIAL_USART_CONFG                           \
+    {.speed = (SERIAL_USART_SPEED),                  \
+     .cr1   = (SERIAL_USART_CR1),                    \
+     .cr2   = ((SERIAL_USART_CR2) | USART_CR2_SWAP), \
+     .cr3   = ((SERIAL_USART_CR3) | USART_CR3_HDSEL)}
