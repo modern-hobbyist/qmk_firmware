@@ -13,6 +13,9 @@
         "rgb_matrix": true,
         "rgblight": false
     },
+    "bootmagic": {
+        "matrix": [0, 5]
+    },
     "matrix_pins": {
         "cols": ["B10", "B2", "B0", "A7", "A6", "A5", "A2", "B11", "B12", "B13", "B14"],
         "rows": ["A9", "A8", "B15", "B1", "A4", "A3", null]
@@ -29,16 +32,10 @@
                 "cols": ["B14", "A9", "A8", "B15", "B10", "B2", "B1", "A5", "A6", "A7", "B0"],
                 "rows": ["B12", "B13", "B11", "A4", "B8", "A3", "A2"]
             }
-        },
-        "usb_detect": {
-           "enabled": true
-        },
-        "transport": {
-            "protocol": "serial"
         }
     },
     "ws2812": {
-        "pin": "A10",
+        "pin": "A10"
     },
     "rgb_matrix": {
         "led_count": 82,
