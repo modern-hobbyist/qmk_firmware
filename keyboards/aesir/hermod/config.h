@@ -54,7 +54,7 @@
 // #define BACKLIGHT_PAL_MODE 2
 #define BACKLIGHT_PIN B8
 
-#define SERIAL_USART_CONFIG                           \
+#define SERIAL_USART_CONFIG                          \
     {.speed = (SERIAL_USART_SPEED),                  \
      .cr1   = (SERIAL_USART_CR1),                    \
      .cr2   = ((SERIAL_USART_CR2) | USART_CR2_SWAP), \
