@@ -48,12 +48,16 @@
 #endif
 
 // Backlight driver (to control LCD backlight)
-#define BACKLIGHT_PWM_DRIVER PWMD1
-#define BACKLIGHT_PWM_CHANNEL 3
-#define BACKLIGHT_LEVELS 10
+// #define BACKLIGHT_PWM_DRIVER PWMD1
+// #define BACKLIGHT_PWM_CHANNEL 3
+// #define BACKLIGHT_LEVELS 10
 // #define BACKLIGHT_PAL_MODE 2
-#define BACKLIGHT_PIN B8
+// #define BACKLIGHT_PIN B8
 #define EE_HANDS
+#define SPLIT_TRANSFORM_MIRROR
+#define SPLIT_LAYER_STATE_ENABLE
+
+#define WS2812_PWM_DRIVER PWMD1
 
 #define SERIAL_USART_CONFIG                          \
     {.speed = (SERIAL_USART_SPEED),                  \
