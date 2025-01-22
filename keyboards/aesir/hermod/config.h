@@ -53,6 +53,7 @@
 #define BACKLIGHT_LEVELS 10
 // #define BACKLIGHT_PAL_MODE 2
 #define BACKLIGHT_PIN B8
+#define EE_HANDS
 
 #define SERIAL_USART_CONFIG                          \
     {.speed = (SERIAL_USART_SPEED),                  \
