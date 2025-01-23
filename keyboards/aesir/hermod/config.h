@@ -31,18 +31,18 @@
 
 #define QUANTUM_PAINTER_DISPLAY_TIMEOUT 60000
 
-#define SPI_DRIVER SPID2
-#define SPI_SCK_PIN B13
-// #define SPI_SCK_PAL_MODE 5
-#define SPI_MOSI_PIN B15
-// #define SPI_MOSI_PAL_MODE 5
-#define SPI_MISO_PIN B14
-// #define SPI_MISO_PAL_MODE 5
+#define SPI_DRIVER SPID1
+#define SPI_SCK_PIN B3
+#define SPI_MISO_PIN B4
+#define SPI_MOSI_PIN B5
+#define SPI_SCK_PAL_MODE 0
+#define SPI_MISO_PAL_MODE 0
+#define SPI_MOSI_PAL_MODE 0
 
-#define LCD_RST_PIN B5
+#define LCD_RST_PIN B6
 #define LCD_CS_PIN A0
 #define LCD_DC_PIN A1
-#define LCD_ENABLE_PIN
+#define LCD_ENABLE_PIN B7
 #ifndef LCD_ACTIVITY_TIMEOUT
 #    define LCD_ACTIVITY_TIMEOUT 60000
 #endif
