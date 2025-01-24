@@ -3,6 +3,7 @@
 // #define HAL_USE_GPT TRUE
 #define HAL_USE_PWM TRUE
 #define HAL_USE_SPI TRUE
+#define HAL_USE_I2C FALSE
 // #define HAL_USE_SERIAL TRUE
 // #define SERIAL_BUFFERS_SIZE 256
 

@@ -18,16 +18,9 @@
 /* Use the custom font */
 #define OLED_FONT_H "./lib/glcdfont.c"
 
-#ifdef OLED_ENABLE
-/* Mapping I2C2 for OLED */
-#    define I2C1_SCL_PIN B6
-#    define I2C1_SDA_PIN B7
-#    define I2C_DRIVER I2CD1
-#endif
-
-#ifdef RGB_MATRIX_TIMEOUT
- #undef RGB_MATRIX_TIMEOUT
-#endif
+// #ifdef RGB_MATRIX_TIMEOUT
+//  #undef RGB_MATRIX_TIMEOUT
+// #endif
 
 #define QUANTUM_PAINTER_DISPLAY_TIMEOUT 60000
 
@@ -54,13 +47,18 @@
 // #define BACKLIGHT_PAL_MODE 2
 // #define BACKLIGHT_PIN B8
 #define EE_HANDS
-// #define SPLIT_TRANSFORM_MIRROR
-// #define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_TRANSFORM_MIRROR
+#define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_USB_DETECT
+#define SPLIT_WATCHDOG_ENABLE
 
 #define WS2812_PWM_DRIVER PWMD1
 #define WS2812_PWM_CHANNEL 3
 #define WS2812_PWM_PAL_MODE 2
 #define WS2812_PWM_DMA_STREAM STM32_DMA1_STREAM5
+
+#define SERIAL_DEBUG
+#define DEBUG_MATRIX_SCAN_RATE
 
 #undef SERIAL_USART_DRIVER
 #define SERIAL_USART_DRIVER SD2
