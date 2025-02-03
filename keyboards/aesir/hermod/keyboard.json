@@ -32,6 +32,16 @@
                 "cols": ["B14", "A9", "A8", "B15", "B10", "B2", "B1", "A5", "A6", "A7", "B0"],
                 "rows": ["B12", "B13", "B11", "A4", "B8", "A3", "A2"]
             }
+        },
+        "transport": {
+            "sync": {
+                "activity": true,
+                "indicators": true,
+                "layer_state": true,
+                "matrix_state": true,
+                "modifiers": true,
+                "wpm": true
+            }
         }
     },
     "ws2812": {
@@ -42,7 +52,7 @@
         "led_count": 82,
         "split_count": [39, 43],
         "driver": "ws2812",
-        "max_brightness": 10,
+        "max_brightness": 255,
         "layout": [
                 {"matrix": [0,6], "x":10, "y":0, "flags": 4},
                 {"matrix": [0,5], "x":9, "y":0, "flags": 4},
@@ -141,15 +151,11 @@
                 {"matrix": [12,0], "x":18, "y":6, "flags": 4}
         ],
         "default": {
-            "animation": "solid_splash"
+            "animation": "cycle_all"
         },
         "animations": {
-            "breathing": true,
             "cycle_all": true,
-            "cycle_up_down": true,
-            "rainbow_beacon": true,
-            "rainbow_pinwheels": true,
-            "solid_splash": true
+            "static": true
         }
     },
     "url": "",

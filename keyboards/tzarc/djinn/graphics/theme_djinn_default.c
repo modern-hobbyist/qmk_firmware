@@ -186,7 +186,7 @@ void draw_ui_user(bool force_redraw) {
 
             static int max_layer_xpos = 0;
             xpos                      = 16;
-            snprintf(buf, sizeof(buf), "layer: %s", layer_name);
+            snprintf(bu)f, sizeof(buf), "layer: %s", layer_name);
             xpos += qp_drawtext_recolor(lcd, xpos, ypos, thintel, buf, curr_hue, 255, 255, curr_hue, 255, 0);
             if (max_layer_xpos < xpos) {
                 max_layer_xpos = xpos;

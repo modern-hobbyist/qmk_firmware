@@ -15,6 +15,9 @@
  */
 #pragma once
 
+#define BOOTMAGIC_ROW_RIGHT 7
+#define BOOTMAGIC_COLUMN_RIGHT 6
+
 /* Use the custom font */
 #define OLED_FONT_H "./lib/glcdfont.c"
 
@@ -37,7 +40,7 @@
 #define LCD_DC_PIN A1
 #define LCD_ENABLE_PIN B7
 #ifndef LCD_ACTIVITY_TIMEOUT
-#    define LCD_ACTIVITY_TIMEOUT 60000
+#    define LCD_ACTIVITY_TIMEOUT 600000
 #endif
 
 // Backlight driver (to control LCD backlight)
@@ -47,17 +50,18 @@
 // #define BACKLIGHT_PAL_MODE 2
 // #define BACKLIGHT_PIN B8
 #define EE_HANDS
+
 #define SPLIT_TRANSFORM_MIRROR
 #define SPLIT_LAYER_STATE_ENABLE
 #define SPLIT_USB_DETECT
 #define SPLIT_WATCHDOG_ENABLE
+#define SPLIT_ACTIVITY_ENABLE
 
 #define WS2812_PWM_DRIVER PWMD1
 #define WS2812_PWM_CHANNEL 3
 #define WS2812_PWM_PAL_MODE 2
 #define WS2812_PWM_DMA_STREAM STM32_DMA1_STREAM5
 
-#define SERIAL_USART_SPEED 57600
 #define SERIAL_DEBUG
 #define DEBUG_MATRIX_SCAN_RATE
 
