@@ -18,14 +18,9 @@
 #define BOOTMAGIC_ROW_RIGHT 7
 #define BOOTMAGIC_COLUMN_RIGHT 6
 
-/* Use the custom font */
-#define OLED_FONT_H "./lib/glcdfont.c"
-
 // #ifdef RGB_MATRIX_TIMEOUT
 //  #undef RGB_MATRIX_TIMEOUT
 // #endif
-
-#define QUANTUM_PAINTER_DISPLAY_TIMEOUT 60000
 
 #define SPI_DRIVER SPID1
 #define SPI_SCK_PIN B3
