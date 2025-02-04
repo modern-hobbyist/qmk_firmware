@@ -34,7 +34,7 @@
             }
         },
         "transport": {
-            "sync":
+            "sync": {
                 "activity": true,
                 "indicators": true,
                 "layer_state": true,
